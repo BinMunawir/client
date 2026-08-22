@@ -1,0 +1,2 @@
+# staging environment. Non-secret overrides go here; secrets come from env vars only.
+Env: stg

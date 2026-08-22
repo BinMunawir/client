@@ -1,0 +1,3 @@
+# dev environment — all values fall back to the struct defaults in config.go,
+# which are deliberately dev-oriented so the service runs with zero configuration
+# against the local docker-compose stack. Override individual keys here as needed.

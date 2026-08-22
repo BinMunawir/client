@@ -1,0 +1,18 @@
+# VCS
+.git
+.gitignore
+
+# IDE / tooling
+.idea
+.claude
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose.yaml
+
+# Local build artifacts
+bin
+
+# Docs (not needed to build the image)
+*.md

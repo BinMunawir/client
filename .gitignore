@@ -1,0 +1,6 @@
+/bin/
+*.exe
+config/.env
+
+# Note: internal/adapters/pg/.gen is intentionally COMMITTED (generated snapshot),
+# per the service standard §9 ("Generated code is committed and never edited").
