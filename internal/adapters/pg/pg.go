@@ -8,7 +8,7 @@ import (
 	"net/url"
 	"sync"
 
-	"github.com/BinMunawir/maal_business/config"
+	"github.com/BinMunawir/client/config"
 	_ "github.com/jackc/pgx/v5/stdlib" // registers the "pgx" database/sql driver
 )
 

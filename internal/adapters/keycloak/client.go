@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-const defaultUserAgent = "maal-business-keycloak-go/0.1"
+const defaultUserAgent = "client-business-keycloak-go/0.1"
 
 // Client is the transport core for the Keycloak Admin REST API — a typed mirror, no
 // business logic (api-adapter-standard §1). The realm is client-level config; endpoint

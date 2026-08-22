@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/BinMunawir/maal_business/internal/adapters/keycloak"
+	"github.com/BinMunawir/client/internal/adapters/keycloak"
 )
 
 // UsersPost - POST: /admin/realms/{realm}/users  (Create a new user)

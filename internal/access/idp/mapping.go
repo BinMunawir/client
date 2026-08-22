@@ -1,8 +1,8 @@
 package idp
 
 import (
-	"github.com/BinMunawir/maal_business/internal/adapters/keycloak/keycloak_admin"
-	"github.com/BinMunawir/maal_business/internal/core"
+	"github.com/BinMunawir/client/internal/adapters/keycloak/keycloak_admin"
+	"github.com/BinMunawir/client/internal/core"
 )
 
 // toUserRep is the translation boundary: it builds the Keycloak user request from the

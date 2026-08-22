@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	business_activities "github.com/BinMunawir/maal_business/internal/business/activities"
-	"github.com/BinMunawir/maal_business/internal/core"
+	activities "github.com/BinMunawir/client/internal/client/activities"
+	"github.com/BinMunawir/client/internal/core"
 )
 
 // OnboardLocal is the pure-function twin of Onboard: the identical sequence executed with
@@ -18,7 +18,7 @@ func OnboardLocal(ctx context.Context, in OnboardInput) (OnboardOutput, error) {
 	var err error
 
 	// 1. Register
-	registerIn := business_activities.RegisterInput{
+	registerIn := activities.RegisterInput{
 		CorrID:            in.CorrID,
 		LegalName:         in.LegalName,
 		TradeName:         in.TradeName,
@@ -29,21 +29,21 @@ func OnboardLocal(ctx context.Context, in OnboardInput) (OnboardOutput, error) {
 		SizeSegment:       in.SizeSegment,
 		ServiceTier:       in.ServiceTier,
 	}
-	biz, err = business_activities.Register(ctx, registerIn)
+	biz, err = activities.Register(ctx, registerIn)
 	if err != nil {
-		return out, fmt.Errorf("business_activities.Register: %w", err)
+		return out, fmt.Errorf("activities.Register: %w", err)
 	}
 
 	// 2. ProvisionOrg
-	biz, err = business_activities.ProvisionOrg(ctx, business_activities.ProvisionOrgInput{Biz: biz})
+	biz, err = activities.ProvisionOrg(ctx, activities.ProvisionOrgInput{Biz: biz})
 	if err != nil {
-		return out, fmt.Errorf("business_activities.ProvisionOrg: %w", err)
+		return out, fmt.Errorf("activities.ProvisionOrg: %w", err)
 	}
 
 	// 3. Activate
-	biz, err = business_activities.Activate(ctx, business_activities.ActivateInput{Biz: biz})
+	biz, err = activities.Activate(ctx, activities.ActivateInput{Biz: biz})
 	if err != nil {
-		return out, fmt.Errorf("business_activities.Activate: %w", err)
+		return out, fmt.Errorf("activities.Activate: %w", err)
 	}
 
 	out.Business = biz

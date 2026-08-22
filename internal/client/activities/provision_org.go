@@ -1,13 +1,13 @@
-package business_activities
+package activities
 
 import (
 	"context"
 	"errors"
 	"fmt"
 
-	"github.com/BinMunawir/maal_business/internal/business/idp"
-	"github.com/BinMunawir/maal_business/internal/business/store"
-	"github.com/BinMunawir/maal_business/internal/core"
+	"github.com/BinMunawir/client/internal/client/idp"
+	"github.com/BinMunawir/client/internal/client/store"
+	"github.com/BinMunawir/client/internal/core"
 	"github.com/go-jet/jet/v2/qrm"
 )
 

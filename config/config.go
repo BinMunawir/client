@@ -24,8 +24,8 @@ Notes:
 type config struct {
 	Env     string `env:"ENV" yaml:"Env" env-default:"dev" env-description:"dev, stg, or prod"`
 	Service struct {
-		Name  string `env:"SERVICE__NAME" yaml:"Name" env-default:"maal_business"`
-		Title string `env:"SERVICE__TITLE" yaml:"Title" env-default:"Maal Business (Customer) Domain"`
+		Name  string `env:"SERVICE__NAME" yaml:"Name" env-default:"client"`
+		Title string `env:"SERVICE__TITLE" yaml:"Title" env-default:"client Business (Customer) Domain"`
 		Root  string `env:"SERVICE__ROOT" yaml:"Root" env-default:"."`
 	} `yaml:"Service"`
 	App struct{} `yaml:"App"` // for business-specific only
@@ -33,9 +33,9 @@ type config struct {
 		DSN      string `env:"DB_DSN" yaml:"DB_DSN" env-default:""`
 		Host     string `env:"DB__HOST" yaml:"Host" env-default:"localhost"`
 		Port     int    `env:"DB__PORT" yaml:"Port" env-default:"54322"`
-		User     string `env:"DB__USER" yaml:"User" env-default:"maaladmin"`
-		Password string `env:"DB__PASSWORD" yaml:"Password" env-default:"maalpassword"`
-		Name     string `env:"DB__NAME" yaml:"Name" env-default:"maalbizdb"`
+		User     string `env:"DB__USER" yaml:"User" env-default:"clientadmin"`
+		Password string `env:"DB__PASSWORD" yaml:"Password" env-default:"clientpassword"`
+		Name     string `env:"DB__NAME" yaml:"Name" env-default:"clientdb"`
 	} `yaml:"Db"`
 	Temporal struct {
 		HostPort  string `env:"TEMPORAL__HOSTPORT" yaml:"HostPort" env-default:""`
@@ -46,7 +46,7 @@ type config struct {
 	// the identity-provider anti-corruption ports to provision users/organizations.
 	Keycloak struct {
 		BaseURL string `env:"KEYCLOAK__BASE_URL" yaml:"BaseURL" env-default:"http://localhost:8081"`
-		Realm   string `env:"KEYCLOAK__REALM" yaml:"Realm" env-default:"maal"`
+		Realm   string `env:"KEYCLOAK__REALM" yaml:"Realm" env-default:"client"`
 		// AdminToken is a bearer token for the Keycloak Admin API. In a full build this
 		// is minted via a client-credentials grant; here it is injected as config so the
 		// adapter stays a thin, faithful mirror (design of api-adapter-standard §1).

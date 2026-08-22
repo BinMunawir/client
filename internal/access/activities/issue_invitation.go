@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/BinMunawir/maal_business/internal/access/store"
-	"github.com/BinMunawir/maal_business/internal/core"
+	"github.com/BinMunawir/client/internal/access/store"
+	"github.com/BinMunawir/client/internal/core"
 )
 
 const defaultInviteTTLHours = 72

@@ -1,8 +1,8 @@
 package store
 
 import (
-	"github.com/BinMunawir/maal_business/internal/adapters/pg/.gen/maalbizdb/public/model"
-	"github.com/BinMunawir/maal_business/internal/core"
+	"github.com/BinMunawir/client/internal/adapters/pg/.gen/clientdb/public/model"
+	"github.com/BinMunawir/client/internal/core"
 )
 
 // Mappers convert between domain entities and the generated DB models. Unlike a value

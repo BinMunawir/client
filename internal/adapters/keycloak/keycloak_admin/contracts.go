@@ -1,6 +1,6 @@
 package keycloak_admin
 
-import "github.com/BinMunawir/maal_business/internal/adapters/keycloak"
+import "github.com/BinMunawir/client/internal/adapters/keycloak"
 
 // Keycloak's create endpoints return 201 with an empty body on success and an error
 // object on failure. These envelopes capture exactly that (api-adapter-standard §4): on

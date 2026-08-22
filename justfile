@@ -2,7 +2,7 @@
 
 dir := "./internal/adapters/pg"
 driver := "postgres"
-dsn := env_var_or_default("DB_DSN", "postgres://maaladmin:maalpassword@localhost:54322/maalbizdb?sslmode=disable")
+dsn := env_var_or_default("DB_DSN", "postgres://clientadmin:clientpassword@localhost:54322/clientdb?sslmode=disable")
 
 # ──────────────────────────────────────────────
 # Migrations (goose) — write idempotently, with matching down steps

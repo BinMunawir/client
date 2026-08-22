@@ -6,9 +6,9 @@ import (
 	"math/rand/v2"
 	"strconv"
 
-	"github.com/BinMunawir/maal_business/config"
-	"github.com/BinMunawir/maal_business/internal/adapters/temporal"
-	businessworkflows "github.com/BinMunawir/maal_business/internal/business/workflows"
+	"github.com/BinMunawir/client/config"
+	"github.com/BinMunawir/client/internal/adapters/temporal"
+	"github.com/BinMunawir/client/internal/client/workflows"
 	"go.temporal.io/sdk/client"
 )
 
@@ -24,7 +24,7 @@ func main() {
 	}
 	defer c.Close()
 
-	in := businessworkflows.OnboardInput{
+	in := workflows.OnboardInput{
 		CorrID:      "onboard-" + strconv.Itoa(rand.IntN(99999999)),
 		LegalName:   "Acme Trading Company LLC",
 		TradeName:   "Acme",
@@ -35,16 +35,16 @@ func main() {
 	}
 	opts := client.StartWorkflowOptions{
 		ID:        in.CorrID,
-		TaskQueue: businessworkflows.TaskQueueBusiness,
+		TaskQueue: workflows.TaskQueueBusiness,
 	}
 
-	we, err := c.ExecuteWorkflow(context.Background(), opts, businessworkflows.Onboard, in)
+	we, err := c.ExecuteWorkflow(context.Background(), opts, workflows.Onboard, in)
 	if err != nil {
 		log.Fatalf("start Onboard workflow: %v", err)
 	}
 	log.Printf("started: WorkflowID=%s RunID=%s", we.GetID(), we.GetRunID())
 
-	var out businessworkflows.OnboardOutput
+	var out workflows.OnboardOutput
 	if err := we.Get(context.Background(), &out); err != nil {
 		log.Fatalf("workflow failed: %v", err)
 	}

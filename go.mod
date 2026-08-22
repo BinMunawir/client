@@ -1,4 +1,4 @@
-module github.com/BinMunawir/maal_business
+module github.com/BinMunawir/client
 
 go 1.26.4
 

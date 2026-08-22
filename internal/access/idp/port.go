@@ -9,10 +9,10 @@ import (
 	"log/slog"
 	"strings"
 
-	"github.com/BinMunawir/maal_business/config"
-	"github.com/BinMunawir/maal_business/internal/adapters/keycloak"
-	"github.com/BinMunawir/maal_business/internal/adapters/keycloak/keycloak_admin"
-	"github.com/BinMunawir/maal_business/internal/core"
+	"github.com/BinMunawir/client/config"
+	"github.com/BinMunawir/client/internal/adapters/keycloak"
+	"github.com/BinMunawir/client/internal/adapters/keycloak/keycloak_admin"
+	"github.com/BinMunawir/client/internal/core"
 )
 
 // CreateUser materializes the Keycloak user for an accepted invitation and returns the

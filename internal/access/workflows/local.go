@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	access_activities "github.com/BinMunawir/maal_business/internal/access/activities"
+	access_activities "github.com/BinMunawir/client/internal/access/activities"
 )
 
 // The pure-function twins of the access workflows (standard §6.1): identical sequences with

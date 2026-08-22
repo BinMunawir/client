@@ -1,12 +1,12 @@
-# maal_business — Business (Customer) Identity & Access Service
+# client — Business (Customer) Identity & Access Service
 
-A Go service implementing the **Maal Business (Customer) domain** (`service.md`) built to the
+A Go service implementing the **client Business (Customer) domain** (`service.md`) built to the
 **Go Service Standard** (`blueprint.md`). It is the master of record for *identity and access* —
 the customer legal entity and who/what may operate it — and deliberately holds **no money**
 (balances live in TigerBeetle; login lives in Keycloak; rail state lives in Hyperswitch).
 
 ```
-module github.com/BinMunawir/maal_business   ·   Go 1.26   ·   Temporal · Postgres (jet) · Keycloak
+module github.com/BinMunawir/client   ·   Go 1.26   ·   Temporal · Postgres (jet) · Keycloak
 ```
 
 ---
@@ -17,7 +17,7 @@ Two bounded contexts (`service.md` §2), plus the deferred compliance spine kept
 
 | Context | Entities | Where in code |
 |---|---|---|
-| **business/** | `Organization`, `Business` (aggregate root), `Classification` | `internal/core/business.go`, slice `internal/business/` |
+| **business/** | `Organization`, `Business` (aggregate root), `Classification` | `internal/core/business.go`, slice `internal/client/` |
 | **access/** | `Actor` (abstraction), `Membership`, `Invitation`, `ServiceAccount`, `User`(ref) | `internal/core/access.go`, slice `internal/access/` |
 | **deferred** | `Person`, `BusinessRole` | `internal/core/person.go` (seam only: `Membership.PersonID`) |
 

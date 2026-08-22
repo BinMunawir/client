@@ -7,9 +7,9 @@ import (
 	"math/rand/v2"
 	"strconv"
 
-	"github.com/BinMunawir/maal_business/config"
-	accessworkflows "github.com/BinMunawir/maal_business/internal/access/workflows"
-	businessworkflows "github.com/BinMunawir/maal_business/internal/business/workflows"
+	"github.com/BinMunawir/client/config"
+	accessworkflows "github.com/BinMunawir/client/internal/access/workflows"
+	workflows "github.com/BinMunawir/client/internal/client/workflows"
 )
 
 // local drives the pure-function twins directly — no Temporal, no worker (standard §3, §6.1).
@@ -24,7 +24,7 @@ func main() {
 	run := strconv.Itoa(rand.IntN(99999999))
 
 	// 1. Onboard a Business: Register (draft) → ProvisionOrg (Keycloak org) → Activate.
-	onb, err := businessworkflows.OnboardLocal(ctx, businessworkflows.OnboardInput{
+	onb, err := workflows.OnboardLocal(ctx, workflows.OnboardInput{
 		CorrID:      "onboard-" + run,
 		LegalName:   "Acme Trading Company LLC",
 		TradeName:   "Acme",

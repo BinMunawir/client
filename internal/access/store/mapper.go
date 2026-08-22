@@ -1,8 +1,8 @@
 package store
 
 import (
-	"github.com/BinMunawir/maal_business/internal/adapters/pg/.gen/maalbizdb/public/model"
-	"github.com/BinMunawir/maal_business/internal/core"
+	"github.com/BinMunawir/client/internal/adapters/pg/.gen/clientdb/public/model"
+	"github.com/BinMunawir/client/internal/core"
 )
 
 func ActorToModel(a core.Actor) model.Actors {

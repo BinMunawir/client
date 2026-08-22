@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	access_activities "github.com/BinMunawir/maal_business/internal/access/activities"
-	"github.com/BinMunawir/maal_business/internal/core"
+	access_activities "github.com/BinMunawir/client/internal/access/activities"
+	"github.com/BinMunawir/client/internal/core"
 	"go.temporal.io/sdk/temporal"
 	"go.temporal.io/sdk/workflow"
 )

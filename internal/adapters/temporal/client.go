@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/BinMunawir/maal_business/config"
+	"github.com/BinMunawir/client/config"
 	"go.temporal.io/sdk/client"
 )
 

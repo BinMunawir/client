@@ -1,4 +1,4 @@
-package business_activities
+package activities
 
 import (
 	"context"
@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/BinMunawir/maal_business/internal/business/store"
-	"github.com/BinMunawir/maal_business/internal/core"
+	"github.com/BinMunawir/client/internal/client/store"
+	"github.com/BinMunawir/client/internal/core"
 	"github.com/jackc/pgerrcode"
 	"github.com/jackc/pgx/v5/pgconn"
 )

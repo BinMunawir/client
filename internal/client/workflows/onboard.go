@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	business_activities "github.com/BinMunawir/maal_business/internal/business/activities"
-	"github.com/BinMunawir/maal_business/internal/core"
+	"github.com/BinMunawir/client/internal/client/activities"
+	"github.com/BinMunawir/client/internal/core"
 	"go.temporal.io/sdk/temporal"
 	"go.temporal.io/sdk/workflow"
 )
@@ -49,7 +49,7 @@ func Onboard(ctx workflow.Context, in OnboardInput) (OnboardOutput, error) {
 	var biz core.Business
 
 	// 1. Register — create the Business in `draft` and attach its classifications.
-	registerIn := business_activities.RegisterInput{
+	registerIn := activities.RegisterInput{
 		CorrID:            in.CorrID,
 		LegalName:         in.LegalName,
 		TradeName:         in.TradeName,
@@ -60,20 +60,20 @@ func Onboard(ctx workflow.Context, in OnboardInput) (OnboardOutput, error) {
 		SizeSegment:       in.SizeSegment,
 		ServiceTier:       in.ServiceTier,
 	}
-	if err := workflow.ExecuteActivity(ctx, business_activities.Register, registerIn).Get(ctx, &biz); err != nil {
-		return out, fmt.Errorf("business_activities.Register: %w", err)
+	if err := workflow.ExecuteActivity(ctx, activities.Register, registerIn).Get(ctx, &biz); err != nil {
+		return out, fmt.Errorf("activities.Register: %w", err)
 	}
 
 	// 2. ProvisionOrg — mint the Keycloak Organization and record the reference-out.
-	if err := workflow.ExecuteActivity(ctx, business_activities.ProvisionOrg,
-		business_activities.ProvisionOrgInput{Biz: biz}).Get(ctx, &biz); err != nil {
-		return out, fmt.Errorf("business_activities.ProvisionOrg: %w", err)
+	if err := workflow.ExecuteActivity(ctx, activities.ProvisionOrg,
+		activities.ProvisionOrgInput{Biz: biz}).Get(ctx, &biz); err != nil {
+		return out, fmt.Errorf("activities.ProvisionOrg: %w", err)
 	}
 
 	// 3. Activate — draft → active.
-	if err := workflow.ExecuteActivity(ctx, business_activities.Activate,
-		business_activities.ActivateInput{Biz: biz}).Get(ctx, &biz); err != nil {
-		return out, fmt.Errorf("business_activities.Activate: %w", err)
+	if err := workflow.ExecuteActivity(ctx, activities.Activate,
+		activities.ActivateInput{Biz: biz}).Get(ctx, &biz); err != nil {
+		return out, fmt.Errorf("activities.Activate: %w", err)
 	}
 
 	out.Business = biz

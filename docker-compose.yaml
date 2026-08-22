@@ -7,19 +7,19 @@ version: '3.8'
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: maal_business_pg
+    container_name: client_pg
     restart: unless-stopped
     ports: ["54322:5432"]
     environment:
-      POSTGRES_USER: maaladmin
-      POSTGRES_PASSWORD: maalpassword
-      POSTGRES_DB: maalbizdb
+      POSTGRES_USER: clientadmin
+      POSTGRES_PASSWORD: clientpassword
+      POSTGRES_DB: clientdb
     volumes:
       - pgdata:/var/lib/postgresql/data
 
   cloudbeaver:
     image: dbeaver/cloudbeaver:latest
-    container_name: maal_business_cloudbeaver
+    container_name: client_cloudbeaver
     restart: unless-stopped
     ports: ["8978:8978"]
     volumes:

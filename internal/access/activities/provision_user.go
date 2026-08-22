@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/BinMunawir/maal_business/internal/access/idp"
-	"github.com/BinMunawir/maal_business/internal/core"
+	"github.com/BinMunawir/client/internal/access/idp"
+	"github.com/BinMunawir/client/internal/core"
 )
 
 type ProvisionUserInput struct {

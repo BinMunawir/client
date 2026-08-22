@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/BinMunawir/maal_business/internal/adapters/pg"
-	"github.com/BinMunawir/maal_business/internal/adapters/pg/.gen/maalbizdb/public/model"
-	"github.com/BinMunawir/maal_business/internal/adapters/pg/.gen/maalbizdb/public/table"
-	"github.com/BinMunawir/maal_business/internal/core"
+	"github.com/BinMunawir/client/internal/adapters/pg"
+	"github.com/BinMunawir/client/internal/adapters/pg/.gen/clientdb/public/model"
+	"github.com/BinMunawir/client/internal/adapters/pg/.gen/clientdb/public/table"
+	"github.com/BinMunawir/client/internal/core"
 	"github.com/go-jet/jet/v2/postgres"
 )
 

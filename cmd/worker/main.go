@@ -3,12 +3,12 @@ package main
 import (
 	"log"
 
-	"github.com/BinMunawir/maal_business/config"
-	access_activities "github.com/BinMunawir/maal_business/internal/access/activities"
-	accessworkflows "github.com/BinMunawir/maal_business/internal/access/workflows"
-	"github.com/BinMunawir/maal_business/internal/adapters/temporal"
-	business_activities "github.com/BinMunawir/maal_business/internal/business/activities"
-	businessworkflows "github.com/BinMunawir/maal_business/internal/business/workflows"
+	"github.com/BinMunawir/client/config"
+	access_activities "github.com/BinMunawir/client/internal/access/activities"
+	accessworkflows "github.com/BinMunawir/client/internal/access/workflows"
+	"github.com/BinMunawir/client/internal/adapters/temporal"
+	activities "github.com/BinMunawir/client/internal/client/activities"
+	workflows "github.com/BinMunawir/client/internal/client/workflows"
 	"go.temporal.io/sdk/worker"
 )
 
@@ -25,11 +25,11 @@ func main() {
 	defer c.Close()
 
 	// business capability
-	wBiz := worker.New(c, businessworkflows.TaskQueueBusiness, worker.Options{})
-	wBiz.RegisterWorkflow(businessworkflows.Onboard)
-	wBiz.RegisterActivity(business_activities.Register)
-	wBiz.RegisterActivity(business_activities.ProvisionOrg)
-	wBiz.RegisterActivity(business_activities.Activate)
+	wBiz := worker.New(c, workflows.TaskQueueBusiness, worker.Options{})
+	wBiz.RegisterWorkflow(workflows.Onboard)
+	wBiz.RegisterActivity(activities.Register)
+	wBiz.RegisterActivity(activities.ProvisionOrg)
+	wBiz.RegisterActivity(activities.Activate)
 
 	// access capability
 	wAcc := worker.New(c, accessworkflows.TaskQueueAccess, worker.Options{})
@@ -47,7 +47,7 @@ func main() {
 		log.Fatalf("start business worker: %v", err)
 	}
 	defer wBiz.Stop()
-	log.Printf("worker started on task queues %q and %q", businessworkflows.TaskQueueBusiness, accessworkflows.TaskQueueAccess)
+	log.Printf("worker started on task queues %q and %q", workflows.TaskQueueBusiness, accessworkflows.TaskQueueAccess)
 
 	if err := wAcc.Run(worker.InterruptCh()); err != nil {
 		log.Fatalf("worker run: %v", err)

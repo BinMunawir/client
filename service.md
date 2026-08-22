@@ -1,7 +1,7 @@
-# Maal — Business (Customer) Domain: Logical Design Guide
+# client — Business (Customer) Domain: Logical Design Guide
 
 > **Purpose.** This is the conceptual/logical reference for the customer-identity and
-> access domain of the Maal EMI platform. It defines the modules, the entities inside
+> access domain of the client EMI platform. It defines the modules, the entities inside
 > them, the fields each entity is *responsible for holding*, and how the entities relate.
 > It is written to be handed to a code-level spec pass — it deliberately stops short of
 > schemas, types, indexes, or any implementation detail.
@@ -141,7 +141,7 @@ rail state.
 - `keycloak_org_id` — the one Keycloak Organization this Business maps to (1:1).
 - ledger account-set reference(s) — the TigerBeetle accounts for this Business.
 - virtual IBAN reference(s) — minted in the payment layer.
-- product-enrollment reference(s) — which Maal products this Business is enrolled in.
+- product-enrollment reference(s) — which client products this Business is enrolled in.
 
 **Deferred (KYB) fields — do not build in v1**
 - `risk_rating`, `last_assessed_at`, `next_review_due_at` — periodic KYB refresh state.
@@ -300,7 +300,7 @@ client), not by a `Person`.
    scheduled payments. The service account is scoped to exactly one Business — a machine
    "operator" of that Business, nothing more. **This is where you start.**
 2. **A third-party platform acting for many businesses.** *(Deferred — your BYOP surface.)*
-   An ERP or marketplace integrates once and acts for every Maal business that authorizes
+   An ERP or marketplace integrates once and acts for every client business that authorizes
    it. Here the external *application* is one deduplicated thing (like `Person`) and each
    Business grants it access separately (like `Membership`) — the GitHub App model: one
    app, many installs, a scoped token per install. You do **not** build this now; you only

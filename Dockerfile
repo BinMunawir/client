@@ -1,13 +1,13 @@
 # syntax=docker/dockerfile:1
 #
-# Runtime image for maal_business. Deliberately the same shape as ledger's —
+# Runtime image for client. Deliberately the same shape as ledger's —
 # binaries at /app/<name>, WORKDIR /app, USER 1001 — because L2's go-service
 # chart encodes that layout: workloads[*].command is ["/app/worker"], config is
 # mounted over /app/config, and podSecurityContext pins runAsUser 1001.
 #
 # Only cmd/worker is built. cmd/starter kicks off a workflow and exits and
 # cmd/local is a dev harness; neither is a long-running process, so neither
-# belongs in a Deployment (see L2/envs/dev-local/maal-business.yaml).
+# belongs in a Deployment (see L2/envs/dev-local/client-business.yaml).
 
 FROM registry.access.redhat.com/ubi10/go-toolset:1.26 AS build
 USER 0
