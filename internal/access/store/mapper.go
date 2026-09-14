@@ -1,7 +1,7 @@
 package store
 
 import (
-	"github.com/BinMunawir/client/internal/adapters/pg/.gen/clientdb/public/model"
+	"github.com/BinMunawir/client/internal/adapters/jet/.gen/clientdb/public/model"
 	"github.com/BinMunawir/client/internal/core"
 )
 

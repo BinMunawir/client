@@ -14,7 +14,7 @@ import (
 
 // One shared connection pool per process — never open and close a connection per call
 // (service standard §6.3). *sql.DB is itself a pool; DB() lazily opens it once and every
-// store reuses it via `pg.DB()` inline in QueryContext.
+// store reuses it via `jet.DB()` inline in QueryContext.
 var (
 	once sync.Once
 	db   *sql.DB

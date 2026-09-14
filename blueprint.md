@@ -294,16 +294,9 @@ Each adapter is named for what it connects to and owns that concern completely; 
 ## 8. Cross-cutting conventions
 
 - **Error wrapping.** Every returned error is wrapped with `%w` and a context prefix naming the function or operation (`fmt.Errorf("store.Insert: %w", err)`); outbound adapters additionally prefix the vendor name. Infrastructure errors are classified where the port is called (§6.2), not deep in the store.
-- **Idempotency.** Each entity carries a caller-supplied correlation key persisted under a `UNIQUE` constraint; the workflow run `ID` is that same key. A unique-violation on create is reconciled by re-fetching and confirming the existing row matches (same correlation, expected status) rather than erroring. Outbound calls carry an idempotency key derived from it. Status transitions are guarded (§6.3), so a replayed step is a no-op.
 - **Time.** All timestamps are UTC (`time.Now().UTC()`); persisted timestamp columns are `timestamptz` constrained to zero offset.
-- **IDs.** Domain IDs are generated in `core`; correlation keys come from the caller.
 
 ## 9. Data & tooling
 
 - **Migrations** are versioned SQL applied by a migration tool, driven from the `justfile` (`mg-new`, `mg-up`, `mg-down`). Write them idempotently (`ADD COLUMN IF NOT EXISTS`, `CREATE INDEX IF NOT EXISTS`) with matching down steps.
 - **Codegen** regenerates the `model`/`table` packages from the live schema after every migration (`mg-gen`) into `internal/adapters/pg/.gen`. Generated code is committed and never edited.
-- **Local stack** (database and any tooling UI) is defined in `docker-compose.yaml`; the config defaults point at it so `worker` + `local` run against it with no setup.
-
-## 10. Adding a capability
-
-Copy `internal/<feature>/` and its four sub-packages, then, in order: define the entity, value objects, and status enum in `core`; write the migration and regenerate; implement `store` (mapper, insert, guarded transitions, reads); write each activity (map → port → persist → classify); wrap any outbound integration in an anti-corruption port; compose the Temporal workflow and its pure-function twin; register the workflow and activities in `worker`. Shared adapters are reused, not modified.

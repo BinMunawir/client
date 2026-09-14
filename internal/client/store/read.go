@@ -4,9 +4,9 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/BinMunawir/client/internal/adapters/pg"
-	"github.com/BinMunawir/client/internal/adapters/pg/.gen/clientdb/public/model"
-	"github.com/BinMunawir/client/internal/adapters/pg/.gen/clientdb/public/table"
+	"github.com/BinMunawir/client/internal/adapters/jet"
+	"github.com/BinMunawir/client/internal/adapters/jet/.gen/clientdb/public/model"
+	"github.com/BinMunawir/client/internal/adapters/jet/.gen/clientdb/public/table"
 	"github.com/BinMunawir/client/internal/core"
 	"github.com/go-jet/jet/v2/postgres"
 )
