@@ -22,7 +22,7 @@ Notes:
  3. preferably use YAML unless it's a security concern
 */
 type config struct {
-	Env     string `env:"ENV" yaml:"Env" env-default:"dev" env-description:"dev, stg, or prod"`
+	Env     string `env:"ENV" yaml:"Env" env-default:"dev" env-description:"dev, stg, or prd"`
 	Service struct {
 		Name  string `env:"SERVICE__NAME" yaml:"Name" env-default:"client"`
 		Title string `env:"SERVICE__TITLE" yaml:"Title" env-default:"client Business (Customer) Domain"`

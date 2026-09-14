@@ -1,0 +1,49 @@
+# ci - build and push the client container image.
+#
+# Branch -> environment mapping:
+#   main -> dev
+#   stg  -> stg
+#   prd  -> prd
+#
+# The AWS region (us-east-1) and account ID (587546840712) are intentionally
+# hardcoded in this file rather than stored as secrets or variables (decision
+# D15): neither is sensitive, and keeping them inline makes any change to the
+# deployment target visible and reviewable in a pull request diff.
+#
+# The shared build-push workflow is NOT hosted here - it lives in
+# BinMunawir/paymenthub and is referenced at `@main` (decision D23), so any
+# change merged there propagates to this repository immediately, with no tag
+# or SHA bump needed on this side.
+#
+# Because both repositories are private, paymenthub's
+# Settings -> Actions -> General -> Access must be configured to permit this
+# repository to call its workflows (decision D24); without that, the job fails
+# at workflow resolution before any step runs.
+#
+# Note: the `env` context is NOT available in `jobs.<job_id>.with` for a
+# reusable-workflow call, so every value below is passed as an inline literal.
+
+name: ci
+
+on:
+  push:
+    branches: [main, stg, prd]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    if: contains(fromJSON('["main", "stg", "prd"]'), github.ref_name)
+    permissions:
+      id-token: write
+      contents: read
+    uses: BinMunawir/paymenthub/.github/workflows/build-push.yml@main
+    with:
+      service_name: client
+      aws_region: us-east-1
+      aws_account_id: "587546840712"
+      role_arn: arn:aws:iam::587546840712:role/github
+      environment: ${{ github.ref_name == 'main' && 'dev' || github.ref_name }}

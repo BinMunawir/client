@@ -9,7 +9,7 @@
 # cmd/local is a dev harness; neither is a long-running process, so neither
 # belongs in a Deployment (see L2/envs/dev-local/client-business.yaml).
 
-FROM registry.access.redhat.com/ubi10/go-toolset:1.26 AS build
+FROM registry.access.redhat.com/ubi10/go-toolset:1.26.4 AS build
 USER 0
 WORKDIR /src
 COPY go.mod go.sum ./
